@@ -26,7 +26,7 @@ export const Hero = () => {
 
 
         <section className="hero">
-            <div className="container">
+            <div className="hero-container">
                 <div className="left">
                     <div className="title">
                         Empowering Agrotech Innovation

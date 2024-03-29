@@ -84,10 +84,13 @@
 .hero {
   position: relative;
 
-  .container {
+  .hero-container {
     display: flex;
     justify-content: space-between;
     padding: 100px 0;
+    width: 100%;
+    max-width: 1350px;
+    margin: 0 auto;
 
     .left {
       width: 42%;

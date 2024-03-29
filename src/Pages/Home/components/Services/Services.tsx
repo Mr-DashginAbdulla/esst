@@ -9,8 +9,8 @@ import Laptop from './laptop.jpg';
 export const  Services = () => {
     return(
         <section className='services'>
-            <div className='container'>
-                <div className='header'>Our Services</div>
+            <div className='services-container'>
+                <div className='service-header'>Our Services</div>
 
                 <div className='cards'>
                     <div className='card-item'>
