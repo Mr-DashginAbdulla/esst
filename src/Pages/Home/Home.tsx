@@ -1,7 +1,7 @@
-import Dashboard from "../Profile/Profile";
 import {Hero} from "./components/Hero/Hero";
 import {Services} from "./components/Services/Services";
 import {ContactUs} from "./components/Contact Us/ContactUs";
+import {AboutUs} from "./components/AboutUs/AboutUs";
 
 
 export const Home = () => {
@@ -9,6 +9,7 @@ export const Home = () => {
         <section className='home'>
             <Hero/>
             <Services/>
+            <AboutUs/>
             <ContactUs />
         </section>
     )

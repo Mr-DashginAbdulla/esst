@@ -18,7 +18,7 @@ export const ContactUs = () => {
                     <label htmlFor="message">Message required</label>
                     <textarea id="message" name="message" required></textarea>
                     <button className='success'>
-                        Contact Us
+                        Send Message
                     </button>
                 </form>
             </div>
