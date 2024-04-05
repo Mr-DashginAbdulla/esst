@@ -1,4 +1,4 @@
-// SASS: "About Us" bölümü için stil tanımlamaları
+
 .aboutUs {
   display: flex;
   align-items: center;
@@ -8,12 +8,13 @@
 
   .content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     padding: 20px;
 
     .text {
-      max-width: 50%;
+      max-width: 100%; // Metnin maksimum genişliğini değiştirin
 
       h1 {
         font-weight: 600;
@@ -28,6 +29,7 @@
         font-size: 20px;
         font-family: "Instrument", serif;
         color: #666;
+        margin-top: 10px; // Metinler arasındaki boşluğu ayarlayın
       }
 
       a {
@@ -42,12 +44,27 @@
     }
 
     .image {
-      img{
-        width: 70%;
+      img {
+        width: 100%; // Resmin genişliğini ayarlayın
         height: auto;
-        background-size: cover;
-        background-position: center;
-        object-fit: contain;
+        margin-top: 20px; // Resim ile metin arasındaki boşluğu ayarlayın
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .content {
+      flex-direction: row; // 768 pikselden geniş ekranlarda yatay düzene geçiş yapın
+      align-items: center;
+
+      .text {
+        max-width: 50%; // Metnin maksimum genişliğini ayarlayın
+        margin-right: 20px; // Metin ile resim arasındaki boşluğu ayarlayın
+      }
+
+      .image {
+        width: 50%; // Resmin genişliğini ayarlayın
+        margin-top: 0; // Resim ile metin arasındaki boşluğu kaldırın
       }
     }
   }
