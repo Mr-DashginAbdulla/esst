@@ -17,6 +17,7 @@
     "@types/react-dom": "^18.2.22",
     "antd": "^5.15.4",
     "bootstrap": "^5.3.3",
+    "framer-motion": "^11.0.25",
     "gulp": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

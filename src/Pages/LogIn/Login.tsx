@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import './Login.scss';
+import {motion} from "framer-motion";
 
 export const Login = () => {
     const loginFormRef = useRef<HTMLFormElement>(null);
@@ -28,7 +29,13 @@ export const Login = () => {
     };
 
     return (
-        <div className="wrapper">
+        <motion.div
+
+            initial={ { opacity: 0 } }
+            animate={{opacity: 1}}
+            transition={{ ease: "easeOut", duration: 0.5 }}
+
+            className="wrapper">
             <div className="title-text">
                 <div className="title login" ref={loginTextRef}>Login Form</div>
                 <div className="title signup">Signup Form</div>
@@ -74,6 +81,6 @@ export const Login = () => {
                     </form>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };

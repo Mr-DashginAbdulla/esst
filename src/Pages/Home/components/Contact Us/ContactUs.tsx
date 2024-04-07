@@ -2,10 +2,18 @@ import React from 'react';
 import './ContactUs.scss'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import {motion} from "framer-motion";
+
 
 export const ContactUs = () => {
     return (
-        <section className='contact-us'>
+        <motion.div
+
+            initial={ { opacity: 0 } }
+            animate={{opacity: 1}}
+            transition={{ ease: "easeOut", duration: 0.5 }}
+
+            className='contact-us'>
             <div className="contact-us-container">
                 <h1 className="title">Contact Us</h1>
                 <form >
@@ -22,6 +30,6 @@ export const ContactUs = () => {
                     </button>
                 </form>
             </div>
-        </section>
+        </motion.div>
     )
 }
