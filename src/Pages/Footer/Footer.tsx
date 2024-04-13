@@ -1,34 +1,64 @@
 // TSX: Footer bileşeni
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState} from 'react';
 import './Footer.scss';
 import Logo from './img.png';
+import {Link, useLocation} from "react-router-dom";
+import {FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa";
+import {FaX, FaXTwitter} from "react-icons/fa6";
+
 
 export const Footer = () => {
+
+    const location = useLocation();
+    const [activeMenu, setActiveMenu] = useState<string>(location.pathname);
+
+    const handleMenuClick = (path: string) => {
+        setActiveMenu(path);
+    };
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleMenuToggle = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const handleMenuClose = () => {
+        setIsMenuOpen(false);
+    };
+
     return (
         <footer className="footer">
             <div className="footer-left">
-                <div className="logo">esst-6</div>
+                <Link to="/" onClick={() => handleMenuClick("/")}>©  ESST-6</Link>
             </div>
-            <div className="footer-center">
-                <nav className="navigation">
-                    <ul>
-                        <li><a href="/">Ana Sayfa</a></li>
-                        <li><a href="/hakkimizda">Hakkımızda</a></li>
-                        <li><a href="/urunler">Ürünler</a></li>
-                        <li><a href="/iletisim">İletişim</a></li>
-                    </ul>
-                </nav>
+            <div className="footer-links">
+                <Link
+                    to="/"
+                    onClick={() => handleMenuClick("/")}
+                    className={activeMenu === "/" ? "active" : ""}
+                >
+                    Home
+                </Link>
+                <Link
+                    to="/services"
+                    onClick={() => handleMenuClick("/services")}
+                    className={activeMenu === "/services" ? "active" : ""}
+                >
+                    Services
+                </Link>
+                <Link
+                    to="/contact-us"
+                    onClick={() => handleMenuClick("/contact-us")}
+                    className={activeMenu === "/contact-us" ? "active" : ""}
+                >
+                    Contact Us
+                </Link>
             </div>
-            <div className="footer-right">
-                <nav className="social-links">
-                    <ul>
-                        <li><i className="fa-brands fa-facebook"></i></li>
-                        <li><a href="https://twitter.com" >Twitter</a></li>
-                        <li><a href="https://linkedin.com">LinkedIn</a></li>
-                        <li><a href="https://instagram.com">Instagram</a></li>
-                    </ul>
-                </nav>
+
+            <div    className="footer-right">
+                <div className="links"><FaFacebook /><Link className="links" to="http://fb.com" >Facebook</Link></div>
+                <div className="links"><FaInstagram/><Link className="links" to="http://instagram.com" >Instagram</Link></div>
+                <div className="links"><FaXTwitter/><Link className="links" to="http://x.com" >Twitter</Link></div>
             </div>
         </footer>
     );

@@ -5,55 +5,71 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
+  height: 150px;
+
 
   .footer-left {
-    display: flex;
-    align-items: center;
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
+    width: 400px;
+    a {
+      color: white;
+      text-decoration: none;
+      font-family: Unbounded, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      letter-spacing: 0;
     }
   }
 
-  .footer-center {
-    .navigation {
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        li {
-          display: inline-block;
-          margin-right: 20px;
-          a {
-            color: #fff;
-            text-decoration: none;
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
+  .footer-links{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 10px;
+
+    a{
+      color: white;
+      text-decoration: none;
+      font-family: Poppins, sans-serif;
+      font-size: 15px;
+
+      &:hover{
+        color: #0c9b61;
+        transition-duration: 0.1s;
       }
     }
   }
 
   .footer-right {
-    .social-links {
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        li {
-          display: inline-block;
-          margin-right: 10px;
-          a {
-            color: #fff;
-            text-decoration: none;
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 15px;
+    gap: 10px;
+    padding-left: 10px;
+
+    .links{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+
+      &:hover{
+        color: #0c9b61;
+        transition-duration: 0.1s;
+      }
+
+      svg{
+        display: flex;
+        justify-content: flex-start;
+        margin-right: 10px;
       }
     }
   }

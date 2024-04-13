@@ -1,77 +1,10 @@
-//@import '../../_variables';
-//
-//
-//* a {
-//  text-decoration: none;
-//  color: $font-color ;
-//
-//  &:hover {
-//    color:$accent-color;
-//    transition: 0.5s;
-//  }
-//}
-//
-//
-//.header {
-//  transition: top 0.3s;
-//  position: relative;
-//  width: 100%;
-//
-//  box-sizing: border-box;
-//  padding-top: 1.1vw;
-//  //padding-bottom: 1.1vw;
-//  box-shadow: 1px 1px  #185718;
-//  pointer-events: auto;
-//  display: flex;
-//  flex-direction: column;
-//  gap: 15px;
-//  font-size: 20px;
-//
-//
-//  .upHead {
-//    display: flex;
-//    justify-content: space-around;
-//    align-items: center;
-//
-//    a {
-//      font-family: "Unbounded", sans-serif;
-//      font-weight: 500;
-//      letter-spacing: 0;
-//      color: darkolivegreen;
-//    }
-//  }
-//
-//  .navHead {
-//    display: flex;
-//    align-items: center;
-//    justify-content: center;
-//    gap: 20px;
-//    height: 55px;
-//    background-color: darkolivegreen;
-//    font-family: "Poppins", serif;
-//
-//    a{
-//    color: #FFFFFF;
-//    }
-//  }
-//
-//}
-
 @import "../../_variables";
 
 * {
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-  color: $font-color;
 
-  &:hover {
-    color: $accent-color;
-    transition: 0.5s;
-  }
-}
 
 .header {
   transition: top 0.3s;
@@ -84,11 +17,40 @@ a {
   gap: 15px;
   font-size: 20px;
 
+  a {
+    text-decoration: none;
+
+    &:hover {
+      transition: 0.5s;
+    }
+  }
+
   .upHead {
     display: flex;
     padding-top: 15px;
     justify-content: space-around;
     align-items: center;
+
+    .login{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 3px ;
+      align-content: center;
+      text-align: center;
+      background-color: #064e3b;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      font-family: Unbounded, sans-serif;
+
+    }
+    .dropdownMenu{
+      width: 100px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
 
 
     a {
@@ -123,6 +85,7 @@ a {
       background-color: #064e3b;
       width: 100%;
       @media (max-width: 600px) {
+        margin: auto;
         display: flex;
       }
       a {
@@ -135,4 +98,9 @@ a {
       color: #fff;
     }
   }
+}
+
+
+.active {
+  font-weight: bold; // Optionally, you can add other styling for the active menu item
 }
