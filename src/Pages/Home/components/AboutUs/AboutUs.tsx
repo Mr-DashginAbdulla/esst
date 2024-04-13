@@ -1,6 +1,4 @@
-// TSX: "About Us" bölümü için temel yapı
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './AboutUs.scss';
 import Laptop from './img.png'
 

@@ -1,10 +1,9 @@
-// TSX: Footer bileşeni
 import React, {useState} from 'react';
 import './Footer.scss';
 import Logo from './img.png';
 import {Link, useLocation} from "react-router-dom";
-import {FaFacebook, FaInstagram, FaTwitter} from "react-icons/fa";
-import {FaX, FaXTwitter} from "react-icons/fa6";
+import {FaFacebook, FaInstagram} from "react-icons/fa";
+import {FaXTwitter} from "react-icons/fa6";
 
 
 export const Footer = () => {

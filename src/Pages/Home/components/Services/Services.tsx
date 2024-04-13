@@ -9,7 +9,7 @@ import { CardItem } from './CardItem';
 const container = {
     visible: {
         transition: {
-            staggerChildren: 0.3,
+            staggerChildren: 0.1,
         },
     },
 };
