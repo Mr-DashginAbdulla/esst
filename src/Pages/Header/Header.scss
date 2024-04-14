@@ -68,6 +68,15 @@
     background-color: #064e3b;
     font-family: "Poppins", serif;
 
+    .burger-menu{
+      color: white;
+
+      display: none;
+      @media (max-width: 600px) {
+        display: block;
+      }
+    }
+
     .desktopMenu {
       display: flex;
       gap: 20px;
@@ -102,4 +111,60 @@
 
 .active {
   font-weight: bold; // Optionally, you can add other styling for the active menu item
+}
+
+
+
+// BurgerMenu.scss
+.menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9;
+  &.open {
+    display: block;
+  }
+}
+
+.burger-menu {
+  position: absolute;
+  top: 85px;
+  right: 20px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.menu-nav {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 250px;
+  height: 100%;
+  background: #064e3b;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  transition: left 0.3s ease;
+  z-index: 10;
+  &.open {
+    left: 0;
+  }
+  ul {
+    list-style: none;
+    padding-top: 50px;
+    margin: 0;
+    li {
+      a {
+        display: block;
+        padding: 10px 15px;
+        text-decoration: none;
+        color: #333;
+        &:hover {
+          background: #0c9b61;
+        }
+      }
+    }
+  }
 }

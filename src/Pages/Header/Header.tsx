@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.scss";
+import {FaBars, FaRegUser, FaTimes} from "react-icons/fa";
 
 export const Header  = () => {
+
     const location = useLocation();
     const [activeMenu, setActiveMenu] = useState<string>(location.pathname);
 
@@ -10,14 +12,17 @@ export const Header  = () => {
         setActiveMenu(path);
     };
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-    const handleMenuToggle = () => {
-        setIsMenuOpen(!isMenuOpen);
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
     };
 
-    const handleMenuClose = () => {
-        setIsMenuOpen(false);
+    // Boş bir alana tıklama ile menüyü kapatma
+    const closeMenu = (e: React.MouseEvent) => {
+        if ((e.target as HTMLElement).id === 'menu-overlay') {
+            setIsOpen(false);
+        }
     };
 
 
@@ -25,9 +30,12 @@ export const Header  = () => {
         <section className="header">
             <div className="upHead">
                 <Link to="/" onClick={() => handleMenuClick("/")}>esst-6</Link>
-                <div className="login">P</div>
+                <Link to="/login" className="login">
+                    <FaRegUser/>
+                </Link>
             </div>
             <div className="navHead">
+                {/*<SlideMenu/>*/}
                 <div className="desktopMenu">
                     <Link
                         to="/"
@@ -50,6 +58,19 @@ export const Header  = () => {
                     >
                         Contact Us
                     </Link>
+                </div>
+                <div >
+                    <div id="menu-overlay" className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={closeMenu}></div>
+                    <div className="burger-menu" onClick={toggleMenu}>
+                        {isOpen ? <FaTimes/> : <FaBars/>}
+                    </div>
+                    <nav className={`menu-nav ${isOpen ? 'open' : ''}`}>
+                        <ul>
+                            <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+                            <li><Link to="/services" onClick={toggleMenu}>Service</Link></li>
+                            <li><Link to="/contact-us" onClick={toggleMenu}>About Us</Link></li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </section>
