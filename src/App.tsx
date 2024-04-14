@@ -5,7 +5,7 @@ import {Home} from "./Pages/Home/Home"
 import {Services} from "./Pages/Home/components/Services/Services";
 import {Footer} from "./Pages/Footer/Footer";
 import {ContactUs} from "./Pages/Home/components/Contact Us/ContactUs";
-import {Login} from "./Pages/LogIn/Login";
+import {Login} from "./Pages/Login/Login";
 
 function App() {
     return (
