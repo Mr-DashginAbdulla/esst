@@ -24,9 +24,9 @@ export const SlideMenu = () => {
             </div>
             <nav className={`menu-nav ${isOpen ? 'open' : ''}`}>
                 <ul>
-                    <li><a href="#home" onClick={toggleMenu}>Home</a></li>
-                    <li><a href="#service" onClick={toggleMenu}>Service</a></li>
-                    <li><a href="#about-us" onClick={toggleMenu}>About Us</a></li>
+                    <li><a href="/home" onClick={toggleMenu}>Home</a></li>
+                    <li><a href="/service" onClick={toggleMenu}>Service</a></li>
+                    <li><a href="/about-us" onClick={toggleMenu}>About Us</a></li>
                 </ul>
             </nav>
         </div>

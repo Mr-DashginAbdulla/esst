@@ -28,11 +28,9 @@ export const ContactUs = () => {
                     <iframe
                         title="Google Maps"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3039.5476277497705!2d49.809911891709966!3d40.37455390772369!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307dea2b26aff9%3A0x8bf044493464664c!2sBaku%20State%20University!5e0!3m2!1sen!2saz!4v1713103070036!5m2!1sen!2saz"
-                        width="600"
-                        height="450"
-                        frameBorder="1"
+                        width="1200px"
+                        height="550"
                         style={{border: 1}}
-                        // allowFullScreen=""
                         loading="lazy"
                     />
                 </div>

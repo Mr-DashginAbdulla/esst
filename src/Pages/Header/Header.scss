@@ -9,6 +9,7 @@
 .header {
   transition: top 0.3s;
   position: relative;
+  top: 0;
   width: 100%;
   box-shadow: 1px 1px #185718;
   pointer-events: auto;
@@ -29,6 +30,7 @@
     padding: 10px 30px;
     justify-content: space-between;
     align-items: center;
+
 
     .login{
       width: 50px;

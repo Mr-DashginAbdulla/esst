@@ -16,6 +16,9 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
+      @media (max-width: 600px) {
+        padding-top: 0;
+      }
 
       .title {
         margin-top: 30px;
@@ -23,6 +26,9 @@
         font-size: 30px;
         font-family: Unbounded, sans-serif;
         transition-timing-function: ease;
+        @media (max-width: 600px) {
+          margin-top: -70px;
+        }
       }
 
       .text {

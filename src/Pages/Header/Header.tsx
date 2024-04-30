@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.scss";
 import {FaBars, FaRegUser, FaTimes} from "react-icons/fa";
+import CustomDropdown from "./Dropdown";
 
 export const Header  = () => {
 
@@ -58,6 +59,20 @@ export const Header  = () => {
                     >
                         Contact Us
                     </Link>
+                    <Link
+                        to="/profile"
+                        onClick={() => handleMenuClick("/profile")}
+                        className={activeMenu === "/profile" ? "active" : ""}
+                    >
+                        Profile
+                    </Link>
+                    <Link
+                        to="/dashboard"
+                        onClick={() => handleMenuClick("/dashboard")}
+                        className={activeMenu === "/dashboard" ? "active" : ""}
+                    >
+                        Dashboard
+                    </Link>
                 </div>
                 <div >
                     <div id="menu-overlay" className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={closeMenu}></div>
@@ -68,7 +83,7 @@ export const Header  = () => {
                         <ul>
                             <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
                             <li><Link to="/services" onClick={toggleMenu}>Service</Link></li>
-                            <li><Link to="/contact-us" onClick={toggleMenu}>About Us</Link></li>
+                            <li><Link to="/contact-us" onClick={toggleMenu}>Contact Us</Link></li>
                         </ul>
                     </nav>
                 </div>
