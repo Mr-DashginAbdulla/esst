@@ -27,6 +27,7 @@ export const SlideMenu = () => {
                     <li><a href="/home" onClick={toggleMenu}>Home</a></li>
                     <li><a href="/service" onClick={toggleMenu}>Service</a></li>
                     <li><a href="/about-us" onClick={toggleMenu}>About Us</a></li>
+                    <li><a href="/dashboard" onClick={toggleMenu}>Dashboard</a></li>
                 </ul>
             </nav>
         </div>

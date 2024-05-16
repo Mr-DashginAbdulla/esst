@@ -26,14 +26,38 @@ export const Header  = () => {
         }
     };
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
     return (
         <section className="header">
             <div className="upHead">
                 <Link to="/" onClick={() => handleMenuClick("/")}>esst-6</Link>
-                <Link to="/login" className="login">
-                    <FaRegUser/>
-                </Link>
+                <div className="dropdown">
+                    <button className="dropbtn"> <FaRegUser/> </button>              
+                    <div className="dropdown-content">
+                        <Link
+                            to={isLoggedIn ? "/profile" : "/login"}
+                            onClick={() => handleMenuClick("/profile")}
+                            className={activeMenu === "/profile" ? "active" : ""}>
+                            {isLoggedIn ? "Profile" : "Login"}
+                        </Link>
+                        <Link
+                            to="/dashboard"
+                            onClick={() => handleMenuClick("/dashboard")}
+                            className={activeMenu === "/dashboard" ? "active" : ""}
+                        >
+                            Dashboard
+                        </Link>
+                    
+                        <Link
+                            to="/"
+                            onClick={() => handleMenuClick("/logout")}
+                            className={activeMenu === "/logout" ? "active" : ""}
+                        >
+                            Logout
+                        </Link>
+                    </div>
+                </div>
             </div>
             <div className="navHead">
                 {/*<SlideMenu/>*/}
@@ -59,20 +83,7 @@ export const Header  = () => {
                     >
                         Contact Us
                     </Link>
-                    <Link
-                        to="/profile"
-                        onClick={() => handleMenuClick("/profile")}
-                        className={activeMenu === "/profile" ? "active" : ""}
-                    >
-                        Profile
-                    </Link>
-                    <Link
-                        to="/dashboard"
-                        onClick={() => handleMenuClick("/dashboard")}
-                        className={activeMenu === "/dashboard" ? "active" : ""}
-                    >
-                        Dashboard
-                    </Link>
+                    
                 </div>
                 <div >
                     <div id="menu-overlay" className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={closeMenu}></div>
@@ -91,3 +102,4 @@ export const Header  = () => {
         </section>
     );
 };
+
