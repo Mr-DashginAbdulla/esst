@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Header.scss";
-import {FaBars, FaRegUser, FaTimes} from "react-icons/fa";
+import { FaBars, FaRegUser, FaTimes } from "react-icons/fa";
 import CustomDropdown from "./Dropdown";
 
-export const Header  = () => {
-
+export const Header = () => {
     const location = useLocation();
     const [activeMenu, setActiveMenu] = useState<string>(location.pathname);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true); 
 
     const handleMenuClick = (path: string) => {
         setActiveMenu(path);
     };
-
-    const [isOpen, setIsOpen] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -26,8 +25,6 @@ export const Header  = () => {
         }
     };
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false); 
-
     return (
         <section className="header">
             <div className="upHead">
@@ -37,21 +34,24 @@ export const Header  = () => {
                     <div className="dropdown-content">
                         <Link
                             to={isLoggedIn ? "/profile" : "/login"}
-                            onClick={() => handleMenuClick("/profile")}
-                            className={activeMenu === "/profile" ? "active" : ""}>
+                            onClick={() => handleMenuClick(isLoggedIn ? "/profile" : "/login")}
+                            className={activeMenu === "/profile" || activeMenu === "/login" ? "active" : ""}
+                        >
                             {isLoggedIn ? "Profile" : "Login"}
                         </Link>
                         <Link
-                            to="/dashboard"
-                            onClick={() => handleMenuClick("/dashboard")}
-                            className={activeMenu === "/dashboard" ? "active" : ""}
+                            to={isLoggedIn ? "/dashboard" : "#"}
+                            onClick={() => isLoggedIn && handleMenuClick("/dashboard")}
+                            className={isLoggedIn ? (activeMenu === "/dashboard" ? "active" : "") : "disabled"}
                         >
                             Dashboard
                         </Link>
-                    
                         <Link
                             to="/"
-                            onClick={() => handleMenuClick("/logout")}
+                            onClick={() => {
+                                setIsLoggedIn(false);
+                                handleMenuClick("/logout");
+                            }}
                             className={activeMenu === "/logout" ? "active" : ""}
                         >
                             Logout
@@ -60,7 +60,6 @@ export const Header  = () => {
                 </div>
             </div>
             <div className="navHead">
-                {/*<SlideMenu/>*/}
                 <div className="desktopMenu">
                     <Link
                         to="/"
@@ -83,9 +82,8 @@ export const Header  = () => {
                     >
                         Contact Us
                     </Link>
-                    
                 </div>
-                <div >
+                <div>
                     <div id="menu-overlay" className={`menu-overlay ${isOpen ? 'open' : ''}`} onClick={closeMenu}></div>
                     <div className="burger-menu" onClick={toggleMenu}>
                         {isOpen ? <FaTimes/> : <FaBars/>}
@@ -102,4 +100,3 @@ export const Header  = () => {
         </section>
     );
 };
-

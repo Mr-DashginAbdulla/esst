@@ -1,7 +1,7 @@
 import "./Dashboard.scss"
 import {useState} from "react";
-import People from "./people.svg"
 import { BsThermometerSun } from "react-icons/bs";
+import { LineChart } from "./LineChart";
 
 
 export const Dashboard = () =>{
@@ -68,7 +68,11 @@ export const Dashboard = () =>{
                 </div>
 
                 <div className="moisture">
-                    <div><BsThermometerSun /></div>
+                    <div> <span>50°</span><BsThermometerSun /></div>
+                </div>
+
+                <div className="chart">
+                    <LineChart />
                 </div>
             </div>
         </div>
