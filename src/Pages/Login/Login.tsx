@@ -100,11 +100,15 @@ export const Login = () => {
         }
     };
     
+    
 
     return (
         <div className="margin-login">
             <motion.div
 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ ease: "easeOut", duration: 0.5 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ ease: "easeOut", duration: 0.5 }}
@@ -118,12 +122,24 @@ export const Login = () => {
                     <div className="slide-controls">
                         <input type="radio" name="slide" id="login" defaultChecked />
                         <input type="radio" name="slide" id="signup" />
+                        <input type="radio" name="slide" id="login" defaultChecked />
+                        <input type="radio" name="slide" id="signup" />
                         <label htmlFor="login" className="slide login" onClick={handleLoginClick}>Login</label>
                         <label htmlFor="signup" className="slide signup" onClick={handleSignupClick}
+                            ref={signupBtnRef}>Signup</label>
                             ref={signupBtnRef}>Signup</label>
                         <div className="slider-tab"></div>
                     </div>
                     <div className="form-inner">
+                    <form id='Login' name='Login' action="#" className="login login-form" ref={loginFormRef}>
+                            <div className="field">
+                                <input 
+                                    type="text" 
+                                    placeholder="Email Address" 
+                                    name='email'
+                                    value={loginFormData.email}
+                                    onChange={loginHandleInputChange}
+                                    required/>
                         <form  id='Signup' name='Signup' onSubmit={handleLoginSubmitClick} action="#" className="signup login-form">
                         <div className="field">
                                 <input
@@ -136,6 +152,13 @@ export const Login = () => {
                                 />
                             </div>
                             <div className="field">
+                                <input 
+                                    type="password" 
+                                    placeholder="Password" 
+                                    name='password'
+                                    value={loginFormData.password}
+                                    onChange={loginHandleInputChange}
+                                    required/>
                                 <input
                                     type="password"
                                     placeholder="Password"
@@ -145,16 +168,32 @@ export const Login = () => {
                                     required
                                 />
                             </div>
+
                             <div className="pass-link"><a href="#">Forgot password?</a></div>
+
                             <div className="field btn">
                                 <div className="btn-layer"></div>
                                 <input type="submit" value="Login" />
                             </div>
+                            
+                            <div className="signup-link">Not a member? <a href="#" onClick={handleSignupLinkClick}>Signup
+                                now</a></div>
                             <div className="signup-link">Not a member? <a href="#" onClick={handleSignupLinkClick}>Signup now</a></div>
                         </form>
+
+
+                        {/* register */}
+                        <form id='Signup' name='Signup'  action="#" className="signup login-form" onSubmit={handleSignUpSubmitClick}>
                         {/* register */}
                         <form id='Signup' name='Signup' onSubmit={handleSignUpSubmitClick} action="#" className="signup login-form">
                             <div className="field">
+                                <input 
+                                    type="text" 
+                                    placeholder="Email Address" 
+                                    name='email'
+                                    value={signUpFormData.email}
+                                    onChange={signUpHandleInputChange}
+                                    required/>
                                 <input
                                     type="text"
                                     placeholder="Email Address"
@@ -165,6 +204,13 @@ export const Login = () => {
                                 />
                             </div>
                             <div className="field">
+                                <input 
+                                    type="password" 
+                                    placeholder="Password" 
+                                    name='password'
+                                    value={signUpFormData.password}
+                                    onChange={signUpHandleInputChange} 
+                                    required/>
                                 <input
                                     type="password"
                                     placeholder="Password"
@@ -175,6 +221,13 @@ export const Login = () => {
                                 />
                             </div>
                             <div className="field">
+                                <input 
+                                    type="password" 
+                                    placeholder="Confirm password" 
+                                    name='confirmPassword'
+                                    value={signUpFormData.confirmPassword}
+                                    onChange={signUpHandleInputChange}
+                                    required/>
                                 <input
                                     type="password"
                                     placeholder="Confirm password"
@@ -190,6 +243,7 @@ export const Login = () => {
                                 <input type="submit" value="Signup" />
                             </div>
                         </form>
+
 
                     </div>
                 </div>

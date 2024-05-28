@@ -1,23 +1,20 @@
-
-
-.profile{
-
+.profile {
   font-size: 18px;
   font-family: Unbounded, sans-serif;
   margin-bottom: 25px;
 
-  .UpPhoto{
+  .UpPhoto {
     width: 100%;
     height: 200px;
-    border: 2px solid #064e3b;
+    border-bottom: 2px solid #064e3b;
     position: relative;
     margin-bottom: 50px;
+    background-color: #999999;
 
-    .img{
+    .img {
       display: flex;
       justify-content: center;
       align-items: center;
-      //margin: 50px auto ;
       width: 200px;
       height: 200px;
       border-radius: 50%;
@@ -28,47 +25,44 @@
       top: 50%;
       margin-top: -75px;
       background-color: red;
-
       transition: 0.15s ease-in-out;
 
-      &:hover{
+      &:hover {
         color: #064e3b;
         backface-visibility: hidden;
-        border: 1px #064e3b ;
+        border: 1px #064e3b solid;
       }
     }
   }
 
-
-  .DownInfo{
-
-    form{
+  .DownInfo {
+    form {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      gap: 15px;
       justify-content: center;
       align-items: center;
-      grid-row-gap: 15px;
 
-      @media (max-width: 600px){
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+      @media (max-width: 800px) {
+        grid-template-columns: 1fr;
       }
 
-      #form-component{
+      #form-component {
         display: flex;
-        gap: 15px;
+        flex-direction: column;
+        gap: 10px;
         justify-content: center;
         align-items: center;
 
-        input{
+        input {
+          width: 100%;
+          max-width: 300px;
           height: 26px;
         }
       }
 
-      button{
-        margin: 10px auto ;
+      button {
+        margin: 10px auto;
         box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1);
         border: 0;
         width: 100px;
@@ -88,18 +82,16 @@
           box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
           color: white;
         }
-
       }
 
-      #reset{
+      #reset {
         color: brown;
-        &:hover{
+
+        &:hover {
           background-color: brown;
           color: white;
         }
       }
-
     }
   }
 }
-
