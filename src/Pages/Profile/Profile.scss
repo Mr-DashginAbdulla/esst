@@ -9,9 +9,10 @@
   .UpPhoto{
     width: 100%;
     height: 200px;
-    border: 2px solid #064e3b;
+    border-bottom: 2px solid #064e3b;
     position: relative;
     margin-bottom: 50px;
+    background-color: #999999;
 
     .img{
       display: flex;

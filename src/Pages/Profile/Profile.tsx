@@ -8,7 +8,7 @@ export const Profile = ()=>{
     return (
         <div className="profile">
             <div className="UpPhoto">
-                <img className="img" alt="/" />
+                <img className="img" alt="/" src={PP}/>
             </div>
             <div className="DownInfo">
                 <form>
