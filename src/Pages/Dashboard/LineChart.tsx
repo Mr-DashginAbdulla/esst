@@ -41,37 +41,37 @@ export const LineChart: React.FC = () => {
 
     const [tableData, setTableData] = useState<HumidityData[]>([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await axios.get<HumidityData[]>('http://localhost:3001/humidity');
-                const data = result.data;
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             const result = await axios.get<HumidityData[]>('http://localhost:3001/humidity');
+    //             const data = result.data;
 
-                const latestData = data.slice(-10).reverse();
+    //             const latestData = data.slice(-10).reverse();
 
-                setChartData({
-                    labels: latestData.map(d => new Date(d.timestamp).toLocaleTimeString()),
-                    datasets: [{
-                        data: latestData.map(d => d.value),
-                        backgroundColor: 'transparent',
-                        borderColor: '#064e3b',
-                        pointBorderColor: 'transparent',
-                        pointBorderWidth: 4,
-                        tension: 0.4
-                    }]
-                });
+    //             setChartData({
+    //                 labels: latestData.map(d => new Date(d.timestamp).toLocaleTimeString()),
+    //                 datasets: [{
+    //                     data: latestData.map(d => d.value),
+    //                     backgroundColor: 'transparent',
+    //                     borderColor: '#064e3b',
+    //                     pointBorderColor: 'transparent',
+    //                     pointBorderWidth: 4,
+    //                     tension: 0.4
+    //                 }]
+    //             });
 
-                setTableData(latestData);
-            } catch (error) {
-                console.error("Error fetching data: ", error);
-            }
-        };
+    //             setTableData(latestData);
+    //         } catch (error) {
+    //             console.error("Error fetching data: ", error);
+    //         }
+    //     };
 
-        fetchData();
-        const interval = setInterval(fetchData, 1000);
+    //     fetchData();
+    //     const interval = setInterval(fetchData, 1000);
 
-        return () => clearInterval(interval);
-    }, []);
+    //     return () => clearInterval(interval);
+    // }, []);
 
     const options: ChartOptions<"line"> = {
         plugins: {

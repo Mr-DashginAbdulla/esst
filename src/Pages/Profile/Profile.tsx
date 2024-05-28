@@ -21,6 +21,13 @@ export const Profile = ()=>{
               'Content-Type': 'application/json'
             },
             body: JSON.stringify(userId)}).then(response => response.json()).then(data => {
+
+                setUserName(data.userName);
+
+                setEmail(data.email);
+
+                setPhone(data.phoneNumber);
+
                 console.log(data);
             })
             .catch(error => {
@@ -29,7 +36,7 @@ export const Profile = ()=>{
             });
 
 
-    })
+    },[])
 
     return (
         <div className="profile">
@@ -41,25 +48,25 @@ export const Profile = ()=>{
                     <div className="name" id="form-component">
                         <label>Name</label>
                         <input className="width-full form-control" id="user_profile_name" placeholder="Name"
-                               aria-label="Name" name="user[profile_name]" value="user[profile_name]" />
+                               aria-label="Name" name="user[profile_name]" value={userName} />
                     </div>
 
                     <div className="surname" id="form-component">
                         <label>Surname</label>
                         <input className="width-full form-control" id="user_profile_surname" placeholder="Surname"
-                               aria-label="Surname" name="user[profile_surname]" value="user[profile_surname]" />
+                               aria-label="Surname" name="user[profile_surname]"  disabled/>
                     </div>
 
                     <div className="e-mail" id="form-component">
                         <label>E-mail</label>
                         <input className="width-full form-control" id="user_profile_email" placeholder="Email"
-                               aria-label="Email" disabled name="user[profile_email]" value="user[profile_email]" />
+                               aria-label="Email" disabled name="user[profile_email]" value={email} />
                     </div>
 
                     <div className="phone" id="form-component">
                         <label>Phone</label>
                         <input className="width-full form-control" id="user_profile_phone" placeholder="Phone"
-                               aria-label="Phone" name="user[profile_phone]" value="user[profile_phone]" />
+                               aria-label="Phone" name="user[profile_phone]" value={phone} />
                     </div>
 
                     <button type="submit">Save</button>
