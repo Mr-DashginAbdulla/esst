@@ -24,6 +24,7 @@ export const Header = () => {
             setIsOpen(false);
         }
     };
+    
 
     return (
         <section className="header">

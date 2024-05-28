@@ -1,6 +1,3 @@
-// App.jsx
-
-import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { Header } from "./Pages/Header/Header";
 import { Home } from "./Pages/Home/Home";
@@ -12,29 +9,11 @@ import { Profile } from "./Pages/Profile/Profile";
 import { Dashboard } from "./Pages/Dashboard/Dashboard";
 
 function App() {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [prevScrollPos, visible]);
-
-  const handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-    const visible = prevScrollPos > currentScrollPos;
-
-    setPrevScrollPos(currentScrollPos);
-    setVisible(visible);
-  };
 
   return (
     <Router>
       <div className='App'>
-        <header className={`App-header ${visible ? '' : 'hidden'}`}>
+        <header>
           <Header />
         </header>
         <main>

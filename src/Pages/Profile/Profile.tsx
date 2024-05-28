@@ -1,39 +1,97 @@
-import PP from "./PP.jpg"
-import "./Profile.scss"
-import {FaRegUser} from "react-icons/fa"
+import React, { useState } from 'react';
+import PP from "./PP.jpg";
+import "./Profile.scss";
+import { FaRegUser } from "react-icons/fa";
 
-export const Profile = ()=>{
+export const Profile = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        surname: '',
+        email: '',
+        phone: ''
+    });
 
+    const handleInputChange = (e: any) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
+    const handleSubmit = (e: any) => {
+        e.preventDefault();
+        // Save 
+        console.log('Form data saved:', formData);
+    };
+
+    const handleReset = () => {
+        setFormData({
+            name: '',
+            surname: '',
+            email: '',
+            phone: ''
+        });
+    };
+    
 
     return (
         <div className="profile">
             <div className="UpPhoto">
-                <img className="img" alt="/" src={PP}/>
+                <img className="img" alt="Profile" src={PP} />
             </div>
             <div className="DownInfo">
-                <form>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
                     <div className="name" id="form-component">
                         <label>Name</label>
-                        <input className="width-full form-control" id="user_profile_name" placeholder="Name"
-                               aria-label="Name" name="user[profile_name]" value="user[profile_name]" />
+                        <input
+                            className="width-full form-control"
+                            id="user_profile_name"
+                            placeholder="Name"
+                            aria-label="Name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                        />
                     </div>
 
                     <div className="surname" id="form-component">
                         <label>Surname</label>
-                        <input className="width-full form-control" id="user_profile_surname" placeholder="Surname"
-                               aria-label="Surname" name="user[profile_surname]" value="user[profile_surname]" />
+                        <input
+                            className="width-full form-control"
+                            id="user_profile_surname"
+                            placeholder="Surname"
+                            aria-label="Surname"
+                            name="surname"
+                            value={formData.surname}
+                            onChange={handleInputChange}
+                        />
                     </div>
 
                     <div className="e-mail" id="form-component">
                         <label>E-mail</label>
-                        <input className="width-full form-control" id="user_profile_email" placeholder="Email"
-                               aria-label="Email" disabled name="user[profile_email]" value="user[profile_email]" />
+                        <input
+                            className="width-full form-control"
+                            id="user_profile_email"
+                            placeholder="Email"
+                            aria-label="Email"
+                            disabled
+                            name="email"
+                            value={formData.email}
+                        />
                     </div>
 
                     <div className="phone" id="form-component">
                         <label>Phone</label>
-                        <input className="width-full form-control" id="user_profile_phone" placeholder="Phone"
-                               aria-label="Phone" name="user[profile_phone]" value="user[profile_phone]" />
+                        <input
+                            className="width-full form-control"
+                            id="user_profile_phone"
+                            placeholder="Phone"
+                            aria-label="Phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                        />
                     </div>
 
                     <button type="submit">Save</button>
@@ -41,5 +99,5 @@ export const Profile = ()=>{
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
