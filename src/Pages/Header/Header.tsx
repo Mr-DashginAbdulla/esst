@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import { FaBars, FaRegUser, FaTimes } from "react-icons/fa";
 import CustomDropdown from "./Dropdown";
@@ -9,6 +9,16 @@ export const Header = () => {
     const [activeMenu, setActiveMenu] = useState<string>(location.pathname);
     const [isOpen, setIsOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true); 
+    const navigate = useNavigate();
+    
+    const checkIsLoggedIn = () => {
+        var userId = localStorage.getItem("Token");
+
+        if(userId){
+            setIsLoggedIn(true);
+            navigate("/dashboard")
+        }
+    };
 
     const handleMenuClick = (path: string) => {
         setActiveMenu(path);
@@ -41,7 +51,7 @@ export const Header = () => {
                         </Link>
                         <Link
                             to={isLoggedIn ? "/dashboard" : "#"}
-                            onClick={() => isLoggedIn && handleMenuClick("/dashboard")}
+                            onClick={(() => checkIsLoggedIn)}
                             className={isLoggedIn ? (activeMenu === "/dashboard" ? "active" : "") : "disabled"}
                         >
                             Dashboard
@@ -52,8 +62,7 @@ export const Header = () => {
                                 setIsLoggedIn(false);
                                 handleMenuClick("/logout");
                             }}
-                            className={activeMenu === "/logout" ? "active" : ""}
-                        >
+                            className={activeMenu === "/logout" ? "active" : ""}>
                             Logout
                         </Link>
                     </div>

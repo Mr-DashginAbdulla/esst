@@ -1,9 +1,23 @@
+import { useEffect } from "react"
 import PP from "./PP.jpg"
 import "./Profile.scss"
+
 import {FaRegUser} from "react-icons/fa"
+import authorizedHTTPClient from "../../utils/AxiosInterceptor"
 
 export const Profile = ()=>{
 
+    useEffect(() =>{
+
+        authorizedHTTPClient.get("account/getProfileData").then(response => {
+            console.log(response);
+          })
+          .catch(error => {
+            // Handle error
+            
+          });
+
+    },[])
 
     return (
         <div className="profile">
