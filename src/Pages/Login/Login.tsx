@@ -41,18 +41,29 @@ export const Login = () => {
         e.preventDefault(); // Prevent the default form submission
         const { email, password, rememberMe} = loginFormData;
         
-        const response = await fetch('https://localhost:7286/account/login', {
+        fetch('https://localhost:7286/account/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(loginFormData)});
+            body: JSON.stringify(loginFormData)}).then(response => response.json()).then(data => {
+                // console.log(data);
+                localStorage.setItem("Token",data.token);
+                navigate("/");
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error('Error:', error);
+            });
 
 
         // const loginData = await response.json();
-        if(response.status == 200){
-            navigate("/")
-        }
+        // if(response.status == 200){
+
+        //     console.log(response);
+            
+        //     navigate("/")
+        // }
 
     }
 
@@ -124,7 +135,8 @@ export const Login = () => {
                         <div className="slider-tab"></div>
                     </div>
                     <div className="form-inner">
-                    <form id='Login' name='Login' action="#" className="login login-form" ref={loginFormRef}>
+
+                    <form id='Login' name='Login' action="#" className="login login-form" ref={loginFormRef} onSubmit={handleLoginSubmitClick}>
                             <div className="field">
                                 <input 
                                     type="text" 
