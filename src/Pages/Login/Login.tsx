@@ -41,18 +41,29 @@ export const Login = () => {
         e.preventDefault(); // Prevent the default form submission
         const { email, password, rememberMe} = loginFormData;
         
-        const response = await fetch('https://localhost:7286/account/login', {
+        fetch('https://localhost:7286/account/login', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(loginFormData)});
+            body: JSON.stringify(loginFormData)}).then(response => response.json()).then(data => {
+                // console.log(data);
+                localStorage.setItem("Token",data.token);
+                navigate("/");
+            })
+            .catch(error => {
+                // Handle errors here
+                console.error('Error:', error);
+            });
 
 
         // const loginData = await response.json();
-        if(response.status == 200){
-            navigate("/")
-        }
+        // if(response.status == 200){
+
+        //     console.log(response);
+            
+        //     navigate("/")
+        // }
 
     }
 
@@ -100,15 +111,11 @@ export const Login = () => {
         }
     };
     
-    
 
     return (
         <div className="margin-login">
             <motion.div
 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ ease: "easeOut", duration: 0.5 }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ ease: "easeOut", duration: 0.5 }}
@@ -122,16 +129,14 @@ export const Login = () => {
                     <div className="slide-controls">
                         <input type="radio" name="slide" id="login" defaultChecked />
                         <input type="radio" name="slide" id="signup" />
-                        <input type="radio" name="slide" id="login" defaultChecked />
-                        <input type="radio" name="slide" id="signup" />
                         <label htmlFor="login" className="slide login" onClick={handleLoginClick}>Login</label>
                         <label htmlFor="signup" className="slide signup" onClick={handleSignupClick}
-                            ref={signupBtnRef}>Signup</label>
                             ref={signupBtnRef}>Signup</label>
                         <div className="slider-tab"></div>
                     </div>
                     <div className="form-inner">
-                    <form id='Login' name='Login' action="#" className="login login-form" ref={loginFormRef}>
+
+                    <form id='Login' name='Login' action="#" className="login login-form" ref={loginFormRef} onSubmit={handleLoginSubmitClick}>
                             <div className="field">
                                 <input 
                                     type="text" 
@@ -140,16 +145,6 @@ export const Login = () => {
                                     value={loginFormData.email}
                                     onChange={loginHandleInputChange}
                                     required/>
-                        <form  id='Signup' name='Signup' onSubmit={handleLoginSubmitClick} action="#" className="signup login-form">
-                        <div className="field">
-                                <input
-                                    type="text"
-                                    placeholder="Email Address"
-                                    name="email"
-                                    value={loginFormData.email}
-                                    onChange={loginHandleInputChange}
-                                    required
-                                />
                             </div>
                             <div className="field">
                                 <input 
@@ -159,33 +154,22 @@ export const Login = () => {
                                     value={loginFormData.password}
                                     onChange={loginHandleInputChange}
                                     required/>
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    name="password"
-                                    value={loginFormData.password}
-                                    onChange={loginHandleInputChange}
-                                    required
-                                />
                             </div>
 
                             <div className="pass-link"><a href="#">Forgot password?</a></div>
 
                             <div className="field btn">
                                 <div className="btn-layer"></div>
-                                <input type="submit" value="Login" />
+                                <input type="submit" value="Login"/>
                             </div>
                             
                             <div className="signup-link">Not a member? <a href="#" onClick={handleSignupLinkClick}>Signup
                                 now</a></div>
-                            <div className="signup-link">Not a member? <a href="#" onClick={handleSignupLinkClick}>Signup now</a></div>
                         </form>
 
 
                         {/* register */}
                         <form id='Signup' name='Signup'  action="#" className="signup login-form" onSubmit={handleSignUpSubmitClick}>
-                        {/* register */}
-                        <form id='Signup' name='Signup' onSubmit={handleSignUpSubmitClick} action="#" className="signup login-form">
                             <div className="field">
                                 <input 
                                     type="text" 
@@ -194,14 +178,6 @@ export const Login = () => {
                                     value={signUpFormData.email}
                                     onChange={signUpHandleInputChange}
                                     required/>
-                                <input
-                                    type="text"
-                                    placeholder="Email Address"
-                                    name="email"
-                                    value={signUpFormData.email}
-                                    onChange={signUpHandleInputChange}
-                                    required
-                                />
                             </div>
                             <div className="field">
                                 <input 
@@ -211,14 +187,6 @@ export const Login = () => {
                                     value={signUpFormData.password}
                                     onChange={signUpHandleInputChange} 
                                     required/>
-                                <input
-                                    type="password"
-                                    placeholder="Password"
-                                    name="password"
-                                    value={signUpFormData.password}
-                                    onChange={signUpHandleInputChange}
-                                    required
-                                />
                             </div>
                             <div className="field">
                                 <input 
@@ -228,22 +196,13 @@ export const Login = () => {
                                     value={signUpFormData.confirmPassword}
                                     onChange={signUpHandleInputChange}
                                     required/>
-                                <input
-                                    type="password"
-                                    placeholder="Confirm password"
-                                    name="confirmPassword"
-                                    value={signUpFormData.confirmPassword}
-                                    onChange={signUpHandleInputChange}
-                                    required
-                                />
                             </div>
 
                             <div className="field btn">
                                 <div className="btn-layer"></div>
-                                <input type="submit" value="Signup" />
+                                <input type="submit" value="Signup"/>
                             </div>
                         </form>
-
 
                     </div>
                 </div>
