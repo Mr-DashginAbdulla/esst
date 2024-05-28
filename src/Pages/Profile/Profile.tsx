@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import PP from "./PP.jpg"
 import "./Profile.scss"
 
@@ -7,17 +7,29 @@ import authorizedHTTPClient from "../../utils/AxiosInterceptor"
 
 export const Profile = ()=>{
 
+    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+
     useEffect(() =>{
 
-        authorizedHTTPClient.get("account/getProfileData").then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            // Handle error
-            
-          });
+        let userId = localStorage.getItem("Token");
 
-    },[])
+        fetch('https://localhost:7286/account/GetProfileData', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userId)}).then(response => response.json()).then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                
+                console.error('Error:', error);
+            });
+
+
+    })
 
     return (
         <div className="profile">
