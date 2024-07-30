@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PP from "./PP.jpg";
 import "./Profile.scss";
 import { FaRegUser } from "react-icons/fa";
+
+import authorizedHTTPClient from "../../utils/AxiosInterceptor"
 
 export const Profile = () => {
     const [formData, setFormData] = useState({
@@ -35,6 +37,37 @@ export const Profile = () => {
     };
     
 
+    const [userName, setUserName] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+
+    useEffect(() =>{
+
+        let userId = localStorage.getItem("Token");
+
+        fetch('https://localhost:7286/account/GetProfileData', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userId)}).then(response => response.json()).then(data => {
+
+                setUserName(data.userName);
+
+                setEmail(data.email);
+
+                setPhone(data.phoneNumber);
+
+                console.log(data);
+            })
+            .catch(error => {
+                
+                console.error('Error:', error);
+            });
+
+
+    },[])
+
     return (
         <div className="profile">
             <div className="UpPhoto">
@@ -50,7 +83,7 @@ export const Profile = () => {
                             placeholder="Name"
                             aria-label="Name"
                             name="name"
-                            value={formData.name}
+                            value={userName}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -63,7 +96,7 @@ export const Profile = () => {
                             placeholder="Surname"
                             aria-label="Surname"
                             name="surname"
-                            value={formData.surname}
+                            // value={userSurname}
                             onChange={handleInputChange}
                         />
                     </div>
@@ -77,7 +110,7 @@ export const Profile = () => {
                             aria-label="Email"
                             disabled
                             name="email"
-                            value={formData.email}
+                            value={email}
                         />
                     </div>
 
@@ -92,6 +125,7 @@ export const Profile = () => {
                             value={formData.phone}
                             onChange={handleInputChange}
                         />
+                    
                     </div>
 
                     <button type="submit">Save</button>

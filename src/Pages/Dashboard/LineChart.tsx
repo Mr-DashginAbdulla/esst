@@ -99,6 +99,7 @@ export const LineChart: React.FC = () => {
     return (
         <div className="chart-section">
             <Line data={chartData} options={options}  className="graph"/>
+            
             <table>
                 <thead>
                     <tr>

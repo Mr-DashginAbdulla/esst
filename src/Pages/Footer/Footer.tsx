@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './Footer.scss';
-import Logo from './img.png';
+import Logo from './logo512.png';
 import {Link, useLocation} from "react-router-dom";
 import {FaFacebook, FaInstagram} from "react-icons/fa";
 import {FaXTwitter} from "react-icons/fa6";
@@ -29,6 +29,10 @@ export const Footer = () => {
         <footer className="footer">
             <div className="footer-left">
                 <Link to="/" onClick={() => handleMenuClick("/")}>©  ESST-6</Link>
+
+                {/* <Link to="/" onClick={() => handleMenuClick("/")}>
+                    <img src={Logo} alt="ESST-6" />
+                </Link> */}
             </div>
             <div className="footer-links">
                 <Link

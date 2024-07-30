@@ -1,5 +1,5 @@
 import "./Dashboard.scss"
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import { BsThermometerSun } from "react-icons/bs";
 import { LineChart } from "./LineChart";
 
@@ -8,23 +8,54 @@ export const Dashboard = () =>{
 
     const [isOn, setIsOn] = useState(false);
 
+    const [stansiyaAd, setstansiyaAd] = useState("");
+    const [deviceBattery, setDeviceBattery] = useState(0);
+    const [solarBattery, setSolarBattery] = useState(0);
+    const [currentTemp, setCurrentTemp] = useState(0);
+
     const toggleSwitch = () => {
         setIsOn(!isOn);
     };
+
+    useEffect(() =>{
+
+        let userId = localStorage.getItem("Token");
+
+        fetch('https://localhost:7286/dashboard/getDashboard/getDashboard', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userId)}).then(response => response.json()).then(data => {
+
+                setstansiyaAd(data.stansiyaAd);
+                setDeviceBattery(data.deviceBatteryPercent);
+                setSolarBattery(data.solarBatteryPercent);
+                setCurrentTemp(data.currentTemp);
+
+                console.log(data);
+            })
+            .catch(error => {
+                
+                console.error('Error:', error);
+            });
+
+
+    },[])
 
     return(
         <div className="dashboard">
             <div className="up-dashboard">
                 
                 <select className="select" name="station" id="station">
-                    <option value="station-1">Mərkəzi Stansiya</option>
+                    <option value="station-1">{stansiyaAd}</option>
                     <option value="station-2">Sahə Stansiyası 1</option>
                     <option value="station-3">Sahə Stansiyası 2</option>
                 </select>
 
                 <div className="responsive-battery">
-                    <div className="battery">Device Battery: 50%</div>
-                    <div className="solar-battery" >Solar Battery: 50%</div>
+                    <div className="battery">Device Battery: {deviceBattery}%</div>
+                    <div className="solar-battery" >Solar Battery: {solarBattery}%</div>
                 </div>
 
                 <div className={`switch-container ${isOn ? 'on' : 'off'}`} onClick={toggleSwitch}>
@@ -68,7 +99,7 @@ export const Dashboard = () =>{
                 </div>
 
                 <div className="moisture">
-                    <div> <span>50°</span><BsThermometerSun /></div>
+                    <div> <span>{currentTemp}°</span><BsThermometerSun /></div>
                 </div>
 
                 <div className="chart">
